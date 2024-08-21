@@ -1,0 +1,52 @@
+{
+  "orgName": "alt-beats",
+  "edition": "Developer",
+  "features": [
+    "ServiceCloud",
+    "SalesUser",
+    "ServiceUser",
+    "DevelopmentWave",
+    "EnableSetPasswordInApi",
+    "EinsteinGPTForDevelopers",
+    "API",
+    "Knowledge",
+    "Communities",
+    "Sites",
+    "LiveMessage",
+    "B2CCommerceGMV",
+    "EnableSetPasswordInApi",
+    "Multicurrency",
+    "CommerceConsoleAppEnabled"
+  ],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    },
+    "experienceBundleSettings": {
+      "enableExperienceBundleMetadata": true
+    },
+    "communitiesSettings": {
+      "enableNetworksEnabled": true
+    },
+    "orderManagementSettings": {
+      "enableOrderManagement": true
+    },
+    "orderSettings": {
+      "enableOrders": true,
+      "enableEnhancedCommerceOrders": true,
+      "enableOptionalPricebook": true
+    },
+    "commerceSettings": {
+      "commerceEnabled": true
+    },
+    "languageSettings": {
+      "enableTranslationWorkbench": true
+    },
+    "addressSettings": {
+      "countriesAndStates": true
+    }
+  }
+}
