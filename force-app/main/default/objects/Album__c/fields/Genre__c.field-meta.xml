@@ -48,6 +48,16 @@
                 <default>false</default>
                 <label>Synth Pop</label>
             </value>
+            <value>
+                <fullName>Post Punk</fullName>
+                <default>false</default>
+                <label>Post Punk</label>
+            </value>
+            <value>
+                <fullName>Glam Rock</fullName>
+                <default>false</default>
+                <label>Glam Rock</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
