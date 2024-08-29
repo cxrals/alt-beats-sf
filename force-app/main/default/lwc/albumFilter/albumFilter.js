@@ -7,6 +7,8 @@ import { getObjectInfo, getPicklistValues } from 'lightning/uiObjectInfoApi';
 import ALBUM_OBJECT from '@salesforce/schema/Album__c';
 import GENRE_FIELD from '@salesforce/schema/Album__c.Genre__c';
 
+const DELAY = 350;
+
 export default class AlbumFilter extends LightningElement {
     searchKey = '';
     albumGenre = '';
