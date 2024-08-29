@@ -1,0 +1,32 @@
+<template>
+    <div class="slds-card slds-var-p-around_small">
+        <template lwc:if={albums.data}>
+            <div class="slds-grid slds-wrap">
+                <template
+                    for:each={albums.data.records}
+                    for:item="album"
+                >
+                    <c-album-tile
+                        album={album}
+                        key={album.Id}
+                        onselected={handleAlbumSelected}
+                        class="slds-col slds-var-m-around_xx-small"
+                    ></c-album-tile>
+                </template>
+            </div>
+            <c-paginator
+                page-number={pageNumber}
+                page-size={pageSize}
+                total-item-count={albums.data.totalItemCount}
+                onprevious={handlePreviousPage}
+                onnext={handleNextPage}
+            ></c-paginator>
+        </template>
+        <template lwc:if={albums.error}>
+            <c-error-panel
+                friendly-message="Error retrieving data"
+                errors={albums.error}
+            ></c-error-panel>
+        </template>
+    </div>
+</template>

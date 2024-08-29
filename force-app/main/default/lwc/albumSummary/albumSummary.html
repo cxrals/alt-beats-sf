@@ -1,0 +1,39 @@
+<template>
+    <lightning-card icon-name="custom:custom49">
+        <template lwc:if={album.data}>
+            <span slot="title">{albumName}</span>
+            <lightning-button-icon
+                icon-name="utility:expand_alt"
+                slot="actions"
+                onclick={handleNavigateToRecord}
+            >
+                <label>Navigate to Record</label>
+            </lightning-button-icon>
+            <div class="slds-var-m-horizontal_medium">
+                <img
+                    src={pictureURL}
+                    alt="Album picture"
+                    class="slds-var-m-bottom_x-small"
+                />
+                <lightning-record-form
+                    object-api-name="Album__c"
+                    record-id={albumId}
+                    fields={albumFields}
+                    columns="2"
+                >
+                </lightning-record-form>
+            </div>
+        </template>
+        <template lwc:if={hasNoAlbumId}>
+            <c-error-panel
+                friendly-message="Select an album to see details"
+            ></c-error-panel>
+        </template>
+        <template lwc:if={album.error}>
+            <c-error-panel
+                friendly-message="Error retrieving data"
+                errors={album.error}
+            ></c-error-panel>
+        </template>
+    </lightning-card>
+</template>

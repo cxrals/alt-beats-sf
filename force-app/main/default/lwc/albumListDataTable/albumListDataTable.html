@@ -1,0 +1,25 @@
+<template>
+    <div class="container">
+        <div class="slds-var-p-around_small">
+            <lightning-datatable
+                key-field="Id"
+                data={data}
+                how-row-number-column
+                hide-checkbox-column
+                columns={columns}
+            ></lightning-datatable>
+        </div>
+        <div class="slds-grid slds-grid_vertical-align-center">
+            <div class="slds-col slds-size_2-of-12 slds-var-p-around_small">
+                <lightning-button-icon
+                    disabled={isFirstPage}
+                    class="reset"
+                    icon-name="utility: skip_back"
+                    onclick={handleReset}
+                >
+                    <label>Restart</label>
+                </lightning-button-icon>
+            </div>
+        </div>
+    </div>
+</template>

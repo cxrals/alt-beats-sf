@@ -1,0 +1,29 @@
+<template>
+    <lightning-card title="Filters" icon-name="standard:calibration">
+        <lightning-button
+            slot="actions"
+            label="Reset"
+            onclick={handleReset}
+        ></lightning-button>
+
+        <div class="slds-var-m-around_medium">
+            <lightning-input
+                label="Search Key"
+                type="text"
+                value={searchKey}
+                onchange={handleSearchKeyChange}
+            ></lightning-input>
+        </div>
+        <div class="slds-var-m-around_medium">
+            <template if:true={genrePicklistValues.data}>
+                 <lightning-combobox
+    		      name="genre"
+    		      label="Album Genre"
+    		      value={value}
+    		      options={genrePicklistValues.data.values}
+    		      onchange={handleGenreChange}>
+    			</lightning-combobox>
+            </template>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,15 @@
+<template>
+    <lightning-card>
+        <div class="slds-clearfix slds-var-m-around_medium">
+            <lightning-combobox
+                name="Display Type"
+                label="Display Type"
+                value={displayType}
+                placeholder="Select Display Type"
+                options={options}
+                onchange={handleChange}
+            ></lightning-combobox>
+        </div>
+        <lwc:component lwc:is={componentConstructor}></lwc:component>
+    </lightning-card>
+</template>
