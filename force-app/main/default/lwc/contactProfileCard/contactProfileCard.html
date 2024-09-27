@@ -1,0 +1,122 @@
+<template>
+  <div class="slds-card slds-profile">
+    <div class="slds-grid slds-wrap">
+      <template lwc:if={isLoaded}>
+        <div class="slds-size_1-of-1">
+          <div class="slds-grid slds-wrap slds-p-top_small slds-p-bottom_small slds-p-right_medium slds-p-left_medium">
+            <div class="slds-grid slds-wrap stretch-width">
+              <div class="slds-size_1-of-1">
+                <div class="slds-grid slds-wrap">
+                  <div class="slds-size_1-of-1 slds-p-bottom_large">
+                    <div class="slds-grid slds-wrap">
+                      <div class="slds-align-middle slds-text-align_center">
+                        <img class="profile-photo" src={photoURL} />
+                      </div>
+                      <div class="slds-align-middle slds-p-left_medium">
+                        <h1 class="font-color-white"><strong>{name}</strong></h1>
+                        <h2 class="font-color-white">{mailingCity}, {mailingState}</h2>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="slds-size_1-of-1 slds-p-bottom_large slds-border_bottom-white">
+                  <div class="slds-grid slds-wrap">
+                    <div class="slds-size_1-of-2 slds-p-bottom_x-small">
+                      <div class="slds-grid slds-wrap">
+                        <div class="slds-size_1-of-1">
+                          <span class="slds-form-element__label font-color-white">Email</span>
+                          <div class="slds-form-element__control">
+                            <div class="slds-form-element__static font-color-white">
+                              <strong>{email}</strong>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="slds-size_1-of-2">
+                      <div class="slds-grid slds-wrap">
+                        <div class="slds-size_1-of-1">
+                          <span class="slds-form-element__label font-color-white">Phone</span>
+                          <div class="slds-form-element__control">
+                            <div class="slds-form-element__static font-color-white">
+                              <strong>{phone}</strong>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="slds-size_1-of-1 slds-p-bottom_small slds-p-top_small">
+                  <div class="slds-grid slds-wrap">
+                    <div class="slds-size_1-of-1 slds-p-bottom_x-small">
+                      <div class="slds-grid slds-wrap">
+                        <div class="slds-size_1-of-12 slds-align-middle">
+                          <lightning-icon icon-name="utility:listen" size="x-small" variant="inverse"></lightning-icon>
+                        </div>
+                        <div class="slds-size_11-of-12 slds-align-middle">
+                          <div class="slds-grid slds-wrap">
+                            <div class="slds-size_1-of-1">
+                              <div class="slds-grid slds-wrap">
+                                <div class="slds-align-middle">
+                                  <div class="slds-align-middle font-color-white">
+                                    <strong>{interest1}</strong>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="slds-size_1-of-1 slds-p-bottom_x-small">
+                      <div class="slds-grid slds-wrap">
+                        <div class="slds-size_1-of-12 slds-align-middle">
+                          <lightning-icon icon-name="utility:listen" size="x-small" variant="inverse"></lightning-icon>
+                        </div>
+                        <div class="slds-size_11-of-12 slds-align-middle">
+                          <div class="slds-grid slds-wrap">
+                            <div class="slds-size_1-of-1">
+                              <div class="slds-grid slds-wrap">
+                                <div class="slds-align-middle">
+                                  <div class="slds-align-middle font-color-white">
+                                    <strong>{interest2}</strong>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="slds-size_1-of-1 slds-p-bottom_x-small">
+                      <div class="slds-grid slds-wrap">
+                        <div class="slds-size_1-of-12 slds-align-middle">
+                          <lightning-icon icon-name="utility:listen" size="x-small" variant="inverse"></lightning-icon>
+                        </div>
+                        <div class="slds-size_11-of-12 slds-align-middle">
+                          <div class="slds-grid slds-wrap">
+                            <div class="slds-size_1-of-1">
+                              <div class="slds-grid slds-wrap">
+                                <div class="slds-align-middle">
+                                  <div class="slds-align-middle font-color-white">
+                                    <strong>{interest3}</strong>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+      <template lwc:elseif={error}> Error: {error} </template>
+    </div>
+  </div>
+</template>

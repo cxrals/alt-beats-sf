@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Alternative/Indie</fullName>
+        <default>false</default>
+        <label>Alternative/Indie</label>
+    </customValue>
+    <customValue>
+        <fullName>Alternative Rock</fullName>
+        <default>false</default>
+        <label>Alternative Rock</label>
+    </customValue>
+    <customValue>
+        <fullName>Glam Rock</fullName>
+        <default>false</default>
+        <label>Glam Rock</label>
+    </customValue>
+    <customValue>
+        <fullName>Grunge</fullName>
+        <default>false</default>
+        <label>Grunge</label>
+    </customValue>
+    <customValue>
+        <fullName>Hard Rock</fullName>
+        <default>false</default>
+        <label>Hard Rock</label>
+    </customValue>
+    <customValue>
+        <fullName>Hip hop</fullName>
+        <default>false</default>
+        <label>Hip hop</label>
+    </customValue>
+    <customValue>
+        <fullName>New Wave</fullName>
+        <default>false</default>
+        <label>New Wave</label>
+    </customValue>
+    <customValue>
+        <fullName>Pop</fullName>
+        <default>false</default>
+        <label>Pop</label>
+    </customValue>
+    <customValue>
+        <fullName>Pop Punk</fullName>
+        <default>false</default>
+        <label>Pop Punk</label>
+    </customValue>
+    <customValue>
+        <fullName>Post Punk</fullName>
+        <default>false</default>
+        <label>Post Punk</label>
+    </customValue>
+    <customValue>
+        <fullName>Punk Rock</fullName>
+        <default>false</default>
+        <label>Punk Rock</label>
+    </customValue>
+    <customValue>
+        <fullName>Rock</fullName>
+        <default>false</default>
+        <label>Rock</label>
+    </customValue>
+    <customValue>
+        <fullName>Synth Pop</fullName>
+        <default>false</default>
+        <label>Synth Pop</label>
+    </customValue>
+    <description>Music genre.</description>
+    <masterLabel>Genre</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>
