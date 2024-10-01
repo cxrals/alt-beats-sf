@@ -1,4 +1,5 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, api, wire } from 'lwc';
+import { CurrentPageReference } from 'lightning/navigation';
 
 // statically analyzable dynamic import
 const COMPONENT_MAP = {
@@ -8,7 +9,10 @@ const COMPONENT_MAP = {
 
 export default class AlbumExplorer extends LightningElement {
     componentConstructor;
-    displayType = "tile";
+    @api displayType = "tile";
+
+    @wire(CurrentPageReference)
+    currentPageRef;
 
     async connectedCallback() {
         const ctor = await COMPONENT_MAP[this.displayType]();
@@ -26,5 +30,9 @@ export default class AlbumExplorer extends LightningElement {
         this.displayType = event.detail.value;
         const ctor = await COMPONENT_MAP[this.displayType]();
         this.componentConstructor = ctor.default;
+    }
+
+    get displayType() {
+        return this.currentPageRef.state.c__displayType;
     }
 }
