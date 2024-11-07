@@ -29,22 +29,6 @@
         <formFactor>Small</formFactor>
         <pageOrSobjectType>Album__c</pageOrSobjectType>
         <type>Flexipage</type>
-        <profile>altbeats Profile</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Album</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Album__c</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>altbeats Profile</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>Album</content>
-        <formFactor>Small</formFactor>
-        <pageOrSobjectType>Album__c</pageOrSobjectType>
-        <type>Flexipage</type>
         <profile>Admin</profile>
     </profileActionOverrides>
     <profileActionOverrides>
