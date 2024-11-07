@@ -1,0 +1,28 @@
+minimum_cumulusci_version: "3.60.0"
+project:
+    name: altbeats
+    package:
+        name: altbeats
+        api_version: "61.0"
+    git:
+        default_branch: "master"
+    source_format: sfdx
+
+orgs:
+    scratch:
+        dev:
+            config_file: orgs/dev.json
+            days: 30
+
+tasks:
+    deploy_force_app:
+        description: deploy components from force-app
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            path: force-app/main/default
+    populate_data:
+        description: populate project related data in the org
+        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        options:
+            path: scripts/populateData.cls
+            apex: populateData();
