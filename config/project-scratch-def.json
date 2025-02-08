@@ -14,9 +14,9 @@
     "Sites",
     "LiveMessage",
     "B2CCommerceGMV",
-    "EnableSetPasswordInApi",
     "Multicurrency",
-    "CommerceConsoleAppEnabled"
+    "CommerceConsoleAppEnabled",
+    "Einstein1AIPlatform"
   ],
   "settings": {
     "lightningExperienceSettings": {
@@ -48,6 +48,9 @@
     },
     "addressSettings": {
       "countriesAndStates": true
+    },
+    "einsteinGptSettings" : {
+      "enableEinsteinGptPlatform" : true
     }
   }
 }
