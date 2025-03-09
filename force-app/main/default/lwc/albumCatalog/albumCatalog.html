@@ -1,0 +1,92 @@
+<template>
+    <lightning-card title="Album Catalog" icon-name="custom:custom67">
+        <!-- Filters Section -->
+        <div class="slds-grid slds-gutters slds-var-p-around_medium">
+            <!-- Search -->
+            <div class="slds-col">
+                <lightning-input
+                    type="search"
+                    label="Search Albums"
+                    value={searchTerm}
+                    onchange={handleSearch}
+                ></lightning-input>
+            </div>
+            
+            <!-- Genre Filter -->
+            <div class="slds-col">
+                <lightning-combobox
+                    label="Genre"
+                    value={selectedGenre}
+                    options={genres}
+                    onchange={handleGenreChange}
+                    placeholder="All Genres"
+                ></lightning-combobox>
+            </div>
+            
+            <!-- Artist Filter -->
+            <div class="slds-col">
+                <lightning-combobox
+                    label="Artist"
+                    value={selectedArtist}
+                    options={artists}
+                    onchange={handleArtistChange}
+                    placeholder="All Artists"
+                ></lightning-combobox>
+            </div>
+        </div>
+
+        <!-- Price Range Filters -->
+        <div class="slds-grid slds-gutters slds-var-p-horizontal_medium slds-var-p-bottom_medium">
+            <div class="slds-col">
+                <lightning-input
+                    type="number"
+                    label="Min Price"
+                    value={minPrice}
+                    onchange={handleMinPriceChange}
+                    formatter="currency"
+                    step="0.01"
+                ></lightning-input>
+            </div>
+            <div class="slds-col">
+                <lightning-input
+                    type="number"
+                    label="Max Price"
+                    value={maxPrice}
+                    onchange={handleMaxPriceChange}
+                    formatter="currency"
+                    step="0.01"
+                ></lightning-input>
+            </div>
+        </div>
+
+        <!-- Loading Spinner -->
+        <template if:true={loading}>
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </template>
+
+        <!-- Error Message -->
+        <template if:true={error}>
+            <div class="slds-var-p-around_medium">
+                <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+                    <span class="slds-assistive-text">error</span>
+                    <h2>Error loading albums: {error.body.message}</h2>
+                </div>
+            </div>
+        </template>
+
+        <!-- Album Data Table -->
+        <div class="slds-var-p-around_medium">
+            <lightning-datatable
+                key-field="productId"
+                data={albums}
+                columns={columns}
+                hide-checkbox-column
+                show-row-number-column
+                sorted-by={sortBy}
+                sorted-direction={sortDirection}
+                onsort={handleSort}
+                onrowaction={handleRowAction}>
+            </lightning-datatable>
+        </div>
+    </lightning-card>
+</template> 

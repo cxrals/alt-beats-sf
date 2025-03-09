@@ -1,0 +1,217 @@
+<template>
+    <div class="checkout-container">
+        <lightning-card title="Checkout">
+            <!-- Progress Indicator -->
+            <lightning-progress-indicator
+                current-step={currentStep}
+                type="path"
+                variant="base"
+                steps={steps}>
+            </lightning-progress-indicator>
+
+            <!-- Loading Spinner -->
+            <template if:true={showSpinner}>
+                <lightning-spinner alternative-text="Processing" size="medium"></lightning-spinner>
+            </template>
+
+            <!-- Step 1: Shipping Details -->
+            <template if:true={isStep1}>
+                <div class="slds-p-around_medium">
+                    <div class="slds-grid slds-gutters slds-wrap">
+                        <div class="slds-col slds-size_1-of-2 slds-p-bottom_small">
+                            <lightning-input
+                                name="firstName"
+                                label="First Name"
+                                required
+                                value={orderDetails.firstName}
+                                message-when-value-missing="Please enter your first name"
+                                onchange={handleInputChange}>
+                            </lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-bottom_small">
+                            <lightning-input
+                                name="lastName"
+                                label="Last Name"
+                                required
+                                value={orderDetails.lastName}
+                                message-when-value-missing="Please enter your last name"
+                                onchange={handleInputChange}>
+                            </lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-bottom_small">
+                            <lightning-input
+                                name="email"
+                                type="email"
+                                label="Email"
+                                required
+                                value={orderDetails.email}
+                                message-when-value-missing="Please enter your email"
+                                message-when-type-mismatch="Please enter a valid email"
+                                onchange={handleInputChange}>
+                            </lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-bottom_small">
+                            <lightning-input
+                                name="phone"
+                                type="tel"
+                                label="Phone"
+                                required
+                                value={orderDetails.phone}
+                                pattern="[0-9]{10}"
+                                message-when-value-missing="Please enter your phone number"
+                                message-when-pattern-mismatch="Please enter a valid 10-digit phone number"
+                                onchange={handleInputChange}>
+                            </lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-p-bottom_small">
+                            <lightning-input
+                                name="street"
+                                label="Street"
+                                required
+                                value={orderDetails.street}
+                                message-when-value-missing="Please enter your street address"
+                                onchange={handleInputChange}>
+                            </lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-bottom_small">
+                            <lightning-input
+                                name="city"
+                                label="City"
+                                required
+                                value={orderDetails.city}
+                                message-when-value-missing="Please enter your city"
+                                onchange={handleInputChange}>
+                            </lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-bottom_small">
+                            <lightning-input
+                                name="state"
+                                label="State"
+                                required
+                                value={orderDetails.state}
+                                message-when-value-missing="Please enter your state"
+                                onchange={handleInputChange}>
+                            </lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-bottom_small">
+                            <lightning-input
+                                name="postalCode"
+                                label="Postal Code"
+                                required
+                                value={orderDetails.postalCode}
+                                pattern="[0-9]{5}"
+                                message-when-value-missing="Please enter your postal code"
+                                message-when-pattern-mismatch="Please enter a valid 5-digit postal code"
+                                onchange={handleInputChange}>
+                            </lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2 slds-p-bottom_small">
+                            <lightning-input
+                                name="country"
+                                label="Country"
+                                required
+                                value={orderDetails.country}
+                                message-when-value-missing="Please enter your country"
+                                onchange={handleInputChange}>
+                            </lightning-input>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Step 2: Payment Method -->
+            <template if:true={isStep2}>
+                <div class="slds-p-around_medium">
+                    <lightning-radio-group
+                        name="paymentMethod"
+                        label="Select Payment Method"
+                        options={paymentMethods}
+                        value={orderDetails.paymentMethod}
+                        onchange={handleInputChange}
+                        type="radio">
+                    </lightning-radio-group>
+                </div>
+            </template>
+
+            <!-- Step 3: Order Summary -->
+            <template if:true={isStep3}>
+                <div class="slds-p-around_medium">
+                    <div class="slds-text-heading_medium slds-p-bottom_medium">
+                        Order Summary
+                    </div>
+                    
+                    <!-- Shipping Details Summary -->
+                    <div class="slds-box slds-theme_default slds-m-bottom_medium">
+                        <div class="slds-text-heading_small slds-p-bottom_small">
+                            Shipping Details
+                        </div>
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-2">
+                                <p>{orderDetails.firstName} {orderDetails.lastName}</p>
+                                <p>{orderDetails.email}</p>
+                                <p>{orderDetails.phone}</p>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <p>{orderDetails.street}</p>
+                                <p>{orderDetails.city}, {orderDetails.state} {orderDetails.postalCode}</p>
+                                <p>{orderDetails.country}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Order Items -->
+                    <div class="slds-box slds-theme_default slds-m-bottom_medium">
+                        <div class="slds-text-heading_small slds-p-bottom_small">
+                            Items ({orderDetails.items.length})
+                        </div>
+                        <template for:each={orderDetails.items} for:item="item">
+                            <div key={item.productId} class="slds-grid slds-gutters slds-p-bottom_small">
+                                <div class="slds-col slds-size_4-of-6">
+                                    Quantity: {item.quantity}
+                                </div>
+                                <div class="slds-col slds-size_2-of-6 slds-text-align_right">
+                                    ${item.price}
+                                </div>
+                            </div>
+                        </template>
+                        <div class="slds-grid slds-gutters slds-p-top_small slds-text-heading_medium">
+                            <div class="slds-col slds-size_4-of-6">
+                                Total
+                            </div>
+                            <div class="slds-col slds-size_2-of-6 slds-text-align_right">
+                                {formattedTotal}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Navigation Buttons -->
+            <div slot="footer">
+                <lightning-button
+                    label="Cancel"
+                    onclick={handleCancelCheckout}
+                    class="slds-m-right_x-small">
+                </lightning-button>
+                <lightning-button
+                    if:false={isStep1}
+                    label="Previous"
+                    onclick={handlePrevious}
+                    class="slds-m-right_x-small">
+                </lightning-button>
+                <lightning-button
+                    if:false={isStep3}
+                    label="Next"
+                    variant="brand"
+                    onclick={handleNext}>
+                </lightning-button>
+                <lightning-button
+                    if:true={isStep3}
+                    label="Place Order"
+                    variant="brand"
+                    onclick={handlePlaceOrder}>
+                </lightning-button>
+            </div>
+        </lightning-card>
+    </div>
+</template> 

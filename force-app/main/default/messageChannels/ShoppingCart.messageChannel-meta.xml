@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Shopping Cart Channel</masterLabel>
+    <isExposed>true</isExposed>
+    <description>Message Channel for Shopping Cart updates</description>
+    <lightningMessageFields>
+        <fieldName>cartAction</fieldName>
+        <description>Action performed on cart (add, remove, update)</description>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>productId</fieldName>
+        <description>Product Id</description>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>quantity</fieldName>
+        <description>Quantity of items</description>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>cartItems</fieldName>
+        <description>Full cart items array</description>
+    </lightningMessageFields>
+</LightningMessageChannel> 

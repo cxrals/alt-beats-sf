@@ -1,0 +1,17 @@
+.checkout-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.slds-progress-bar {
+    max-width: 70%;
+    margin: 0 auto;
+}
+
+.slds-box {
+    background: #ffffff;
+}
+
+p {
+    margin-bottom: 0.5rem;
+} 

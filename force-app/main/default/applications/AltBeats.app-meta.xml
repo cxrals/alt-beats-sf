@@ -43,6 +43,8 @@
     <tabs>Album__c</tabs>
     <tabs>Album_Explorer</tabs>
     <tabs>Artist__c</tabs>
+    <tabs>Album_Catalog</tabs>
+    <tabs>Checkout</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>AltBeats_UtilityBar</utilityBar>
 </CustomApplication>

@@ -1,0 +1,123 @@
+<template>
+    <div class="shopping-cart-container">
+        <!-- Cart Toggle Button -->
+        <lightning-button-icon
+            icon-name="utility:cart"
+            variant="border-filled"
+            size="large"
+            alternative-text="Toggle Cart"
+            class="slds-m-right_x-small cart-button"
+            onclick={toggleCart}>
+        </lightning-button-icon>
+        
+        <!-- Item Count Badge -->
+        <template if:true={hasItems}>
+            <span class="slds-badge slds-badge_inverse cart-count">{cartItems.length}</span>
+        </template>
+
+        <!-- Cart Modal -->
+        <template if:true={isCartOpen}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_medium">
+                <div class="slds-modal__container">
+                    <!-- Cart Header -->
+                    <header class="slds-modal__header">
+                        <h2 class="slds-text-heading_medium">Shopping Cart</h2>
+                        <lightning-button-icon
+                            icon-name="utility:close"
+                            variant="border-filled"
+                            size="small"
+                            alternative-text="Close Cart"
+                            onclick={toggleCart}
+                            class="slds-modal__close">
+                        </lightning-button-icon>
+                    </header>
+
+                    <!-- Cart Content -->
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <template if:true={hasItems}>
+                            <!-- Cart Items -->
+                            <div class="cart-items">
+                                <template for:each={cartItems} for:item="item">
+                                    <div key={item.productId} class="slds-grid slds-gutters slds-p-bottom_medium cart-item">
+                                        <!-- Album Image -->
+                                        <div class="slds-col slds-size_2-of-12">
+                                            <img src={item.imageUrl} alt={item.title} class="album-image"/>
+                                        </div>
+                                        
+                                        <!-- Album Details -->
+                                        <div class="slds-col slds-size_6-of-12">
+                                            <div class="slds-text-heading_small">{item.title}</div>
+                                            <div class="slds-text-body_small">
+                                                Price: {item.price}
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Quantity Control -->
+                                        <div class="slds-col slds-size_2-of-12">
+                                            <lightning-input
+                                                type="number"
+                                                label="Quantity"
+                                                value={item.quantity}
+                                                min="1"
+                                                data-productid={item.productId}
+                                                onchange={handleQuantityChange}>
+                                            </lightning-input>
+                                        </div>
+                                        
+                                        <!-- Remove Button -->
+                                        <div class="slds-col slds-size_2-of-12 slds-align_absolute-center">
+                                            <lightning-button-icon
+                                                icon-name="utility:delete"
+                                                variant="border-filled"
+                                                alternative-text="Remove Item"
+                                                data-productid={item.productId}
+                                                onclick={handleRemoveItem}>
+                                            </lightning-button-icon>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+
+                            <!-- Cart Total -->
+                            <div class="slds-grid slds-gutters slds-p-top_medium slds-border_top">
+                                <div class="slds-col slds-size_8-of-12">
+                                    <div class="slds-text-heading_medium">Total:</div>
+                                </div>
+                                <div class="slds-col slds-size_4-of-12">
+                                    <div class="slds-text-heading_medium slds-text-align_right">
+                                        {formattedTotal}
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+
+                        <!-- Empty Cart Message -->
+                        <template if:false={hasItems}>
+                            <div class="slds-text-align_center slds-p-around_large">
+                                <p class="slds-text-heading_small">Your cart is empty</p>
+                                <p class="slds-text-body_small">Add some vinyl records to get started!</p>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- Cart Footer -->
+                    <footer class="slds-modal__footer">
+                        <lightning-button
+                            label="Continue Shopping"
+                            variant="neutral"
+                            onclick={toggleCart}>
+                        </lightning-button>
+                        <lightning-button
+                            if:true={hasItems}
+                            label="Checkout"
+                            variant="brand"
+                            class="slds-m-left_x-small"
+                            onclick={handleCheckout}>
+                        </lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </div>
+</template> 
