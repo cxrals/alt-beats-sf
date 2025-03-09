@@ -1,0 +1,89 @@
+<template>
+    <div class="vinyl-care-guide">
+        <lightning-card title="Vinyl Care Guide" icon-name="custom:custom48">
+            <!-- Loading State -->
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+            </template>
+
+            <!-- Error State -->
+            <template if:true={error}>
+                <div class="slds-p-around_medium slds-text-color_error">
+                    Error loading care guide. Please try again later.
+                </div>
+            </template>
+
+            <!-- Content -->
+            <template if:true={hasSections}>
+                <div class="slds-grid slds-gutters">
+                    <!-- Navigation Sidebar -->
+                    <div class="slds-col slds-size_1-of-4">
+                        <nav class="slds-nav-vertical slds-nav-vertical_compact">
+                            <div class="slds-nav-vertical__section">
+                                <ul>
+                                    <template for:each={sections} for:item="section">
+                                        <li key={section.title} 
+                                            class={section.title} 
+                                            data-title={section.title}
+                                            onclick={handleSectionClick}>
+                                            <a class="slds-nav-vertical__action">
+                                                <lightning-icon 
+                                                    icon-name="utility:chevronright" 
+                                                    size="xx-small"
+                                                    class="slds-m-right_x-small nav-icon">
+                                                </lightning-icon>
+                                                {section.title}
+                                            </a>
+                                        </li>
+                                    </template>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+
+                    <!-- Content Area -->
+                    <div class="slds-col slds-size_3-of-4">
+                        <template if:true={selectedSection}>
+                            <div class="slds-p-around_medium">
+                                <h2 class="slds-text-heading_medium slds-p-bottom_small">
+                                    {selectedSection.title}
+                                </h2>
+                                <p class="slds-text-body_regular slds-p-bottom_medium">
+                                    {selectedSection.description}
+                                </p>
+
+                                <!-- Items Grid -->
+                                <div class="slds-grid slds-wrap slds-gutters">
+                                    <template for:each={selectedSectionItems} for:item="item">
+                                        <div key={item.title} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-p-bottom_medium">
+                                            <article class="slds-card care-guide-item">
+                                                <div class="slds-card__header slds-grid">
+                                                    <header class="slds-media slds-media_center">
+                                                        <div class="slds-media__figure">
+                                                            <lightning-icon 
+                                                                icon-name={item.iconName}
+                                                                size="small">
+                                                            </lightning-icon>
+                                                        </div>
+                                                        <div class="slds-media__body">
+                                                            <h3 class="slds-text-heading_small">
+                                                                {item.title}
+                                                            </h3>
+                                                        </div>
+                                                    </header>
+                                                </div>
+                                                <div class="slds-card__body slds-card__body_inner">
+                                                    <p class="care-guide-description">{item.description}</p>
+                                                </div>
+                                            </article>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </template>
+        </lightning-card>
+    </div>
+</template> 
